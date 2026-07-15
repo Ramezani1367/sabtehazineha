@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,interactive-widget=resizes-content">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#f5f5f5">
@@ -59,7 +59,7 @@ body{font-family:V;background:#ececec;direction:rtl;display:flex;justify-content
 .empty span{font-size:42px;display:block;margin-bottom:10px;opacity:.5}
 
 /* --- INPUT --- */
-.inp{flex-shrink:0;background:#fff;border:1px solid #e2e2e2;border-top:none;margin:0 12px;padding:10px 16px 14px;display:flex;gap:8px;align-items:center;position:sticky;bottom:0;z-index:5}
+.inp{flex-shrink:0;background:#fff;border:1px solid #e2e2e2;border-top:none;margin:0 12px;padding:10px 16px 14px;display:flex;gap:8px;align-items:center}
 .inp input{flex:1;min-width:0;padding:12px 10px;border:1px solid #e2e2e2;font-size:14px;font-family:V;background:#fafafa;outline:none;text-align:right;height:46px;color:#333}
 .inp input::placeholder{color:#ccc}
 .inp input:focus{border-color:#1a5e3a;background:#fff}
@@ -118,7 +118,7 @@ body{font-family:V;background:#ececec;direction:rtl;display:flex;justify-content
 
 <div class="app">
 
-  <div style="position:sticky;top:0;z-index:5;margin:12px 12px 0;flex-shrink:0;border-left:1px solid #e2e2e2;border-right:1px solid #e2e2e2">
+  <div style="margin:12px 12px 0;flex-shrink:0;border-left:1px solid #e2e2e2;border-right:1px solid #e2e2e2">
   <div class="hdr">
     <div class="total">مجموع هزینه‌ها<b id="t">۰</b></div>
     <div class="info" id="fi"></div>
@@ -283,13 +283,13 @@ es.addEventListener('click',function(){if(eid<0)return;var nt=et.value.trim();va
 ec.addEventListener('click',cE);emv.addEventListener('click',function(e){if(e.target===emv)cE()})
 function eS(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function eA(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function ad(){var t=ti.value.trim();var p=pn(pi.value.trim());if(!t){ti.focus();return}if(!p||p<=0){pi.focus();return}data.push({t:t,p:p,d:tk(),idx:nextIdx++});sv();rd();ti.value='';pi.value='';ti.focus();ls.scrollTop=0}
+function ad(){var t=ti.value.trim();var p=pn(pi.value.trim());if(!t){ti.focus();return}if(!p||p<=0){pi.focus();return}data.push({t:t,p:p,d:tk(),idx:nextIdx++});sv();rd();ti.value='';pi.value='';ti.focus();setTimeout(function(){ls.scrollTop=ls.scrollHeight},200)}
 ab.addEventListener('click',ad)
 pi.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ad()}})
 ti.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();pi.focus()}})
 pi.addEventListener('input',function(){var f=fI(pi.value);if(f&&f!==pi.value){pi.value=f;pi.setSelectionRange(f.length,f.length)}})
 ep.addEventListener('input',function(){var f=fI(ep.value);if(f&&f!==ep.value){ep.value=f;ep.setSelectionRange(f.length,f.length)}})
-ld();rd();ti.focus();
+ld();rd();ti.addEventListener('focus',function(){setTimeout(function(){ls.scrollTop=ls.scrollHeight},150)});pi.addEventListener('focus',function(){setTimeout(function(){ls.scrollTop=ls.scrollHeight},150)});ti.focus();
 })();
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sabtehazineha/sw.js")}</script>
